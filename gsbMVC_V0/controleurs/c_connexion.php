@@ -23,12 +23,12 @@ switch($action){
 			$prenom = $visiteur['prenom'];
 			$comptable = $visiteur['comptable'];
 				if ($comptable == 1){
-					connecter($id,$nom,$prenom);
+					connecter($id,$nom,$prenom,$comptable);
 					include("vues/v_sommaireComptable.php");
 					break;
 				}
 				
-			connecter($id,$nom,$prenom);
+			connecter($id,$nom,$prenom,$comptable);
 			include("vues/v_sommaire.php");
 		}
 		break;
