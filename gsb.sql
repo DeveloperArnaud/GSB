@@ -76,14 +76,15 @@ INSERT INTO `etat` (`id`, `libelle`) VALUES
 
 DROP TABLE IF EXISTS `fichefrais`;
 CREATE TABLE IF NOT EXISTS `fichefrais` (
+  `id` int(4) NOT NULL AUTO_INCREMENT,
   `idVisiteur` char(4) NOT NULL,
   `mois` char(6) NOT NULL,
   `nbJustificatifs` int(11) DEFAULT NULL,
   `montantValide` decimal(10,2) DEFAULT NULL,
   `dateModif` date DEFAULT NULL,
   `idEtat` char(2) DEFAULT 'CR',
-  PRIMARY KEY (`idVisiteur`,`mois`),
-  KEY `idEtat` (`idEtat`)
+  PRIMARY KEY (`idVisiteur`,`mois`,`id`),
+  KEY `id` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
