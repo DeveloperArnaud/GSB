@@ -152,7 +152,7 @@ CREATE TABLE IF NOT EXISTS `visiteur` (
 
 INSERT INTO `visiteur` (`id`, `nom`, `prenom`, `login`, `mdp`, `adresse`, `cp`, `ville`, `dateEmbauche`, `comptable`) VALUES
 ('a131', 'Coquerelle', 'Arnaud', 'nono', SHA1('azerty'), '8 rue des Charmes', '46000', 'Cahors', '2002-12-21', 1),
-('a17', 'Andre', 'David', 'dandre', SHA1('oppg5'), '1 rue Petit', '46200', 'Lalbenque', '1998-11-23', NULL),
+('a17', 'Andre', 'David', 'dandre', SHA1('oppg5'), '1 rue Petit', '46200', 'Lalbenque', '1998-11-23', 0),
 ('a55', 'Jobard', 'Maxime', 'lelilel', SHA1('lelilel12'), '1 rue Peranud', '46250', 'Montcuq', '1995-01-12', 1),
 ('a93', 'Tusseau', 'Louis', 'ltusseau', SHA1('ktp3s'), '22 rue des Ternes', '46123', 'Gramat', '2000-05-01', 0),
 ('b13', 'Bentot', 'Pascal', 'pbentot', SHA1('doyw1'), '11 allée des Cerises', '46512', 'Bessines', '1992-07-09', 0),
