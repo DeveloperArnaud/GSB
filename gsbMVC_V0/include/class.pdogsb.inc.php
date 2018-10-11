@@ -55,7 +55,7 @@ class PdoGsb{
 */
 	public function getInfosVisiteur($login, $mdp){
 		$req = "select visiteur.id as id, visiteur.nom as nom, visiteur.prenom as prenom, visiteur.comptable as comptable from visiteur 
-		where visiteur.login='$login' and visiteur.mdp='$mdp'";
+		where visiteur.login='$login' and visiteur.mdp=SHA1('$mdp')";
 		$rs = PdoGsb::$monPdo->query($req);
 		$ligne = $rs->fetch();
 		return $ligne;
