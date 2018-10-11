@@ -61,6 +61,27 @@ class PdoGsb{
         return $ligne;
     }
 
+    public function getLesVisiteurs () {
+        $req = "select *  from visiteur where visiteur.comptable =0" ;
+        $rs = PdoGsb::$monPdo->query($req);
+        $ligne = $rs->fetch();
+        $lesVisiteurs = array () ;
+        while ($ligne != null) {
+            $id = $ligne['id'];
+            $nom = $ligne['nom'];
+            $prenom = $ligne['prenom'];
+            $lesVisiteurs[] = array(
+                "nom"  => $nom,
+                "prenom"  => $prenom,
+                "id" => $id
+            );
+            $ligne = $rs->fetch();
+
+        }
+        return $lesVisiteurs;
+
+    }
+
 
     /**
      * Retourne sous forme d'un tableau associatif toutes les lignes de frais hors forfait
