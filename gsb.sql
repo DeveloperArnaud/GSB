@@ -71,8 +71,8 @@ CREATE TABLE IF NOT EXISTS `fichefrais` (
 --
 
 INSERT INTO `fichefrais` (`id`, `idVisiteur`, `mois`, `nbJustificatifs`, `montantValide`, `dateModif`, `idEtat`) VALUES
-(1, 'a17', '82018', 2018, 1, '10.00', '2018-05-05', 'CL'),
-(4, 'a17', 'test', 2014, 1, '10.25', '2018-05-05', 'CL');
+(1, 'a17', '201805', 1, '10.00', '2018-05-05', 'CL'),
+(4, 'a17', '201807', 1, '10.25', '2018-05-05', 'CL');
 
 -- --------------------------------------------------------
 
@@ -119,7 +119,7 @@ CREATE TABLE IF NOT EXISTS `lignefraisforfait` (
 --
 
 INSERT INTO `lignefraisforfait` (`idVisiteur`, `mois`, `idFraisForfait`, `quantite`) VALUES
-('a17', 'test', 'ETP', 2);
+('a17', '201807', 'ETP', 2);
 
 -- --------------------------------------------------------
 
