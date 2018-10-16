@@ -9,6 +9,7 @@ switch($action){
 	case 'saisirFrais':{
 		if($pdo->estPremierFraisMois($idVisiteur,$mois)){
 			$pdo->creeNouvellesLignesFrais($idVisiteur,$mois);
+
 		}
 		break;
 	}

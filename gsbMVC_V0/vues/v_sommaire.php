@@ -1,4 +1,4 @@
-    <!-- Division pour le sommaire -->
+﻿    <!-- Division pour le sommaire -->
     <div id="menuGauche">
      <div id="infosUtil">
     
@@ -10,7 +10,7 @@
         <ul id="menuList">
 			<li >
                 <?php
-                if ($_SESSION['comptable'] != 1 ) {
+                if ($_SESSION['comptable'] == 0 ) {
                 ?>
                 Visiteur :<br>
                 <?php echo $_SESSION['prenom'] . "  " . $_SESSION['nom'] ?>
@@ -45,13 +45,15 @@
         <li class="smenu">
             <a href="index.php?uc=suiviPaiement&action=selectionnerFrais" title="Suivie du paiement des fiches de frais">Suivi fiche de frais</a>
         </li>
+            <li class="smenu">
+                <a href="index.php?uc=connexion&action=deconnexion" title="Se déconnecter">Déconnexion</a>
+            </li>
+            </ul>
+
         <?php
         }
         ?>
-        <li class="smenu">
-            <a href="index.php?uc=connexion&action=deconnexion" title="Se déconnecter">Déconnexion</a>
-        </li>
-        </ul>
+
     </div>
 
 

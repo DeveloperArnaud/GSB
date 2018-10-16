@@ -17,5 +17,4 @@
          <input type="reset" value="Annuler" name="annuler"> 
       </p>
 </form>
-<p> Se connecter en tant que <a href="indexComptable.php"> comptable</a></p>
 </div>

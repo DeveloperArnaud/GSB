@@ -201,12 +201,31 @@ function ajouterErreur($msg){
  
  * @return le nombre d'erreurs
  */
-function nbErreurs(){
-   if (!isset($_REQUEST['erreurs'])){
-	   return 0;
-	}
-	else{
-	   return count($_REQUEST['erreurs']);
-	}
+function nbErreurs()
+{
+    if (!isset($_REQUEST['erreurs'])) {
+        return 0;
+    } else {
+        return count($_REQUEST['erreurs']);
+    }
+
+    function getSixDernierMois()
+    {
+        $mois = date(m) + 1;
+        $annee = date(Y);
+        $tabMois = array();
+        for ($i = 6; $i > 0; $i--) {
+            $mois -= 1;
+            if ($mois < 1) {
+                $annee -= 1;
+                $mois = 12;
+            }
+            if (strlen($mois) < 2) {
+                $mois = "0" . $mois;
+            }
+            $tabMois[] = $annee . $mois;
+        }
+        return $tabMois;
+    }
 }
 ?>

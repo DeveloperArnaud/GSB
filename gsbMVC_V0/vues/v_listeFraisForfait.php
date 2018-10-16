@@ -7,6 +7,7 @@
           <fieldset>
             <legend>Eléments forfaitisés
             </legend>
+
 			<?php
 				foreach ($lesFraisForfait as $unFrais)
 				{
@@ -22,6 +23,7 @@
 			<?php
 				}
 			?>
+              </form>
 			
 			
 			

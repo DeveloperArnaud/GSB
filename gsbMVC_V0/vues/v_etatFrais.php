@@ -7,6 +7,7 @@
               
                      
     </p>
+        <form method="post" action="index.php?ud=validationFicheFrais&action=validFrais"></form>
   	<table class="listeLegere">
   	   <caption>Eléments forfaitisés </caption>
         <tr>
@@ -46,11 +47,15 @@
 			$date = $unFraisHorsForfait['date'];
 			$libelle = $unFraisHorsForfait['libelle'];
 			$montant = $unFraisHorsForfait['montant'];
+
 		?>
              <tr>
-                <td><?php echo $date ?></td>
-                <td><?php echo $libelle ?></td>
-                <td><?php echo $montant ?></td>
+                 <form method="post" action="index.php?uc=validationFicheFrais&action=reportRefus">
+                     <input type="text" name ="id" hidden="hidden" value="<?php echo $id ?> " >
+                <td><input type ="text" name="date" readonly="readonly" value="<?php echo $date ?>"/> </td>
+                <td>><input type ="text" name="date" readonly="readonly" value="<?php echo $libelle ?>"/></td>
+                <td>><input type ="text" name="date" readonly="readonly" value="<?php echo $montant ?>"/></td>
+                 </form>
              </tr>
         <?php 
           }
