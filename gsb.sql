@@ -56,13 +56,12 @@ CREATE TABLE IF NOT EXISTS `fichefrais` (
   `id` int(4) NOT NULL AUTO_INCREMENT,
   `idVisiteur` char(4) NOT NULL,
   `mois` char(6) NOT NULL,
-  `annee` int(4) NOT NULL,
   `nbJustificatifs` int(11) DEFAULT NULL,
   `montantValide` decimal(10,2) DEFAULT NULL,
   `dateModif` date DEFAULT NULL,
   `idEtat` char(2) DEFAULT 'CR',
-  PRIMARY KEY (`mois`,`id`,`annee`),
-  KEY `id` (`id`,`mois`,`annee`),
+  PRIMARY KEY (`mois`,`id`),
+  KEY `id` (`id`,`mois`),
   KEY `fichefrais_ibfk_1` (`idEtat`),
   KEY `fichefrais_ibfk_2` (`idVisiteur`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
@@ -71,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `fichefrais` (
 -- Déchargement des données de la table `fichefrais`
 --
 
-INSERT INTO `fichefrais` (`id`, `idVisiteur`, `mois`, `annee`, `nbJustificatifs`, `montantValide`, `dateModif`, `idEtat`) VALUES
+INSERT INTO `fichefrais` (`id`, `idVisiteur`, `mois`, `nbJustificatifs`, `montantValide`, `dateModif`, `idEtat`) VALUES
 (1, 'a17', '82018', 2018, 1, '10.00', '2018-05-05', 'CL'),
 (4, 'a17', 'test', 2014, 1, '10.25', '2018-05-05', 'CL');
 
