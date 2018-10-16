@@ -1,0 +1,23 @@
+fichefrais:
+insert into fichefrais (`idVisiteur`,`mois`,`annee`,`nbJustificatifs`,`montantValide`,`dateModif`,`idEtat`) 
+values ('a17','test',2014,1,10.25,'2018-05-05','CL')
+
+(idEtat doit être égal a un id de la table etat et idVisiteur a idVisiteur de la table Visiteur)
+
+fraisforfait:
+insert into fraisforfait (`id`,`libelle`,`montant`) 
+values ('LEL','Le test',24.52)
+
+
+lignefraisforfait:
+insert into lignefraisforfait (`idVisiteur`,`mois`,`idFraisForfait`,`quantite`)
+values ('a17','test','LEL',2)
+
+(idVisiteur et mois doit être égal a un idVisiteur et mois de la table fichefrais)
+
+
+lignehorsforfait:
+insert into lignefraishorsforfait (`idVisiteur`,`mois`,`libelle`,`date`,`montant`) 
+values ('a17','test','le test','2018-05-05',45.02)
+
+(idVisiteur et mois doit être égal a un idVisiteur et mois de la table fichefrais)
