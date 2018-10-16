@@ -75,7 +75,7 @@ INSERT INTO `fichefrais` (`id`, `idVisiteur`, `mois`, `nbJustificatifs`, `montan
 (2, 'a17', '201810', 0, '0.00', '2018-10-15', 'CR'),
 (3, 'a17', '201810', 0, '0.00', '2018-10-21', 'CR'),
 (4, 'a17', '201810', 0, '0.00', '2018-10-21', 'CL'),
-(5, 'a17', 'test', 1, '10.25', '2018-05-05', 'VA');
+(5, 'a17', '201805', 1, '10.25', '2018-05-05', 'VA');
 
 -- --------------------------------------------------------
 
@@ -98,7 +98,6 @@ CREATE TABLE IF NOT EXISTS `fraisforfait` (
 INSERT INTO `fraisforfait` (`id`, `libelle`, `montant`) VALUES
 ('ETP', 'Forfait Etape', '110.00'),
 ('KM', 'Frais Kilométrique', '0.62'),
-('LEL', 'Le test', '24.52'),
 ('NUI', 'Nuitée Hôtel', '80.00'),
 ('REP', 'Repas Restaurant', '25.00');
 
@@ -123,7 +122,7 @@ CREATE TABLE IF NOT EXISTS `lignefraisforfait` (
 --
 
 INSERT INTO `lignefraisforfait` (`idVisiteur`, `mois`, `idFraisForfait`, `quantite`) VALUES
-('a17', 'test', 'LEL', 2);
+('a17', '201805', 'KM', 2);
 
 -- --------------------------------------------------------
 
@@ -148,7 +147,7 @@ CREATE TABLE IF NOT EXISTS `lignefraishorsforfait` (
 --
 
 INSERT INTO `lignefraishorsforfait` (`id`, `idVisiteur`, `mois`, `libelle`, `date`, `montant`) VALUES
-(1, 'a17', 'test', 'le test', '2018-05-05', '45.02');
+(1, 'a17', '201805', 'essence', '2018-05-05', '45.02');
 
 -- --------------------------------------------------------
 
