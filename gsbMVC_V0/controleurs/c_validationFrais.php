@@ -23,7 +23,7 @@ $dateModif = dateAnglaisVersFrancais($dateModif);
 $readOnly = "";
 $button = "<td class='qteForfait'><input type='submit' value='Modifier'></td>";
 $report = "<td><input type='submit' name='btnReportRefus' value='Reporter'><br/>";
-    $refuser = "<input type='submit' name='btnReportRefus' value='Refuser'></td>";
+$refuser = "<input type='submit' name='btnReportRefus' value='Refuser'></td>";
 $valider = 1;
 if((empty($lesFraisForfait)) && (empty($lesFraisHorsForfait))) {
 include("vues/v_pasDeFicheFrais.php");

@@ -29,10 +29,7 @@
                         <?php
                     }
                     ?>
-
                 </select>
-                <input id="ok" type="submit" value="Valider" size="20" />
-
             </p>
         </div>
         <div class="piedForm">

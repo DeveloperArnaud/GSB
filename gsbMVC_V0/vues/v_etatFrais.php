@@ -44,6 +44,7 @@
         <?php      
           foreach ( $lesFraisHorsForfait as $unFraisHorsForfait ) 
 		  {
+              $id = $unFraisHorsForfait['id'];
 			$date = $unFraisHorsForfait['date'];
 			$libelle = $unFraisHorsForfait['libelle'];
 			$montant = $unFraisHorsForfait['montant'];
@@ -55,22 +56,39 @@
                 <td><input type ="text" name="date" readonly="readonly" value="<?php echo $date ?>"/> </td>
                 <td>><input type ="text" name="date" readonly="readonly" value="<?php echo $libelle ?>"/></td>
                 <td>><input type ="text" name="date" readonly="readonly" value="<?php echo $montant ?>"/></td>
+                    <?php $readOnly = "";
+                     $button = "<td class='qteForfait'><input type='submit' value='Modifier'></td>";
+                     $report = "<td><input type='submit' name='btnReportRefus' value='Reporter'><br/>";
+                    $valider = 1; ?>
+                    <?php $refuser = "<input type='submit' name='btnReportRefus' value='Refuser'></td>"; ?>
+
+
+                     <?php echo $report . $refuser; ?>
                  </form>
              </tr>
-        <?php 
+              <?php
           }
-		?>
+        ?>
     </table>
-  </div>
-  </div>
- 
 
-
-
-
-
-
-
+    </div>
+<?php
+if ($valider == 1) {
+    ?>
+    <form method="post" action="index.php?uc=validationFicheFrais&action=validFiche">
+        <input type="submit" name="validFrais" value="Valider"/>
+    </form>
+    <?php
+} elseif ($valider == 2) {
+    ?>
+    <form method="post" action="index.php?uc=suiviPaiement&action=remboursement">
+        <input type="submit" name="rembourserFrais" value="Rembourser"/>
+    </form>
+    <?php
+} else {
+    echo "";
+}
+?>
 
 
 

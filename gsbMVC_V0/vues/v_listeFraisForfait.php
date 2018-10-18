@@ -9,9 +9,10 @@
             </legend>
 
 			<?php
+
 				foreach ($lesFraisForfait as $unFrais)
 				{
-					$idFrais = $unFrais['idfrais'];
+					$idFrais = $unFrais['id'];
 					$libelle = $unFrais['libelle'];
 					$quantite = $unFrais['quantite'];
 			?>
