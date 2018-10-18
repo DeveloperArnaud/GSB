@@ -208,11 +208,9 @@ function nbErreurs()
     } else {
         return count($_REQUEST['erreurs']);
     }
-
-    
 }
 
-function getSixDernierMois()
+    function getSixDernierMois()
     {
         $mois = date(m) + 1;
         $annee = date(Y);
@@ -230,4 +228,5 @@ function getSixDernierMois()
         }
         return $tabMois;
     }
+
 ?>

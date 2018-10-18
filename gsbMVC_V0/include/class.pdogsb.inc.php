@@ -97,6 +97,13 @@ class PdoGsb{
         return $lesLignes;
     }
 
+    public function getMontantHorsForfait($idVisiteur, $mois){
+        $req = "select sum(montant) from lignefraishorsforfait where idvisiteur = '" . $idVisiteur . "' and mois = '" . $mois . "'";
+        $ligneResultat = PdoGsb::$monPdo->query($req);
+        $fetch = $ligneResultat->fetch();
+        return $fetch;
+    }
+
     /**
      * Retourne sous forme d'un tableau associatif toutes les lignes de frais hors forfait
      * concernées par les deux arguments
@@ -171,8 +178,13 @@ class PdoGsb{
      * @param $lesFrais tableau associatif de clé idFrais et de valeur la quantité pour ce frais
      * @return un tableau associatif
      */
-    public function majFraisForfait($idVisiteur, $mois, $lesFrais){
-
+    public function majFraisForfait($idVisiteur, $mois, $lesFrais) {
+        $lesCles = array_keys($lesFrais);
+        foreach ($lesCles as $unIdFrais) {
+            $qte = $lesFrais[$unIdFrais];
+            $req = "update lignefraisforfait set lignefraisforfait.quantite = " . $qte . " where lignefraisforfait.idvisiteur = '" . $idVisiteur . "' and lignefraisforfait.mois = '" . $mois . "' and lignefraisforfait.idfraisforfait = $unIdFrais"  ;
+            PdoGsb::$monPdo->exec($req);
+        }
     }
     /**
      * met à jour le nombre de justificatifs de la table ficheFrais
@@ -265,8 +277,9 @@ class PdoGsb{
 
      * @param $idFrais
      */
-    public function supprimerFraisHorsForfait($idFrais){
-        // Code à ajouter
+         public function supprimerFraisHorsForfait($idFrais) {
+        $req = "delete from lignefraishorsforfait where lignefraishorsforfait.id =$idFrais ";
+        PdoGsb::$monPdo->exec($req);
     }
     /**
      * Retourne les mois pour lesquel un visiteur a une fiche de frais
@@ -295,11 +308,13 @@ class PdoGsb{
     }
 
     public function getLesQuantites($idVisiteur, $mois){
-        $req = "select quantite from lignefraisforfait where idvisiteur = '" . $idVisiteur . "' and mois = '" . $mois . "' order by idfraisforfait";
+        $req = "select lignefraisforfait.quantite,fraisforfait.montant from lignefraisforfait join fraisforfait on lignefraisforfait.idFraisForfait = fraisforfait.id where idvisiteur = '" . $idVisiteur . "' and mois = '" . $mois . "' order by idfraisforfait";
         $ligneResultat = PdoGsb::$monPdo->query($req);
         $fetchAll = $ligneResultat->fetchall();
         return $fetchAll;
     }
+
+
 
     public function majMontantValide($idVisiteur, $mois, $montant){
         $req = "update fichefrais set montantvalide = " . $montant . " where idvisiteur = '" . $idVisiteur . "' and mois = '" . $mois . "'";

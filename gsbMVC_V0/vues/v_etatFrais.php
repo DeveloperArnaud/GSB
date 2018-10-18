@@ -56,13 +56,6 @@
                 <td><input type ="text" name="date" readonly="readonly" value="<?php echo $date ?>"/> </td>
                 <td>><input type ="text" name="date" readonly="readonly" value="<?php echo $libelle ?>"/></td>
                 <td>><input type ="text" name="date" readonly="readonly" value="<?php echo $montant ?>"/></td>
-                    <?php $readOnly = "";
-                     $button = "<td class='qteForfait'><input type='submit' value='Modifier'></td>";
-                     $report = "<td><input type='submit' name='btnReportRefus' value='Reporter'><br/>";
-                    $valider = 1; ?>
-                    <?php $refuser = "<input type='submit' name='btnReportRefus' value='Refuser'></td>"; ?>
-
-
                      <?php echo $report . $refuser; ?>
                  </form>
              </tr>

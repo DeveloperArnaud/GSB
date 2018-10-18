@@ -58,11 +58,14 @@ case "validFiche":
 $idVisiteur = $_SESSION['idVisiteur'];
 $mois = $_SESSION['leMois'];
 $pdo->majEtatFicheFrais($idVisiteur, $mois, 'VA');
-$tabMontant = $pdo->getLesMontants();
+//$tabMontant = $pdo->getLesMontants();
 $tabQuantites = $pdo->getLesQuantites($idVisiteur, $mois);
+
 $montant = 0;
-for($i=0; $i<4; $i++){
-$montant += ($tabMontant[$i][0] * $tabQuantites[$i][0]);
+foreach ($tabQuantites as $row)
+{
+$montant += ($row['montant']*$row['quantite']);
+
 }
 $montantHorsForfait = $pdo->getMontantHorsForfait($idVisiteur, $mois);
 $montant += $montantHorsForfait[0];
