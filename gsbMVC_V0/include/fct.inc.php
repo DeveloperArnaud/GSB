@@ -209,7 +209,10 @@ function nbErreurs()
         return count($_REQUEST['erreurs']);
     }
 
-    function getSixDernierMois()
+    
+}
+
+function getSixDernierMois()
     {
         $mois = date(m) + 1;
         $annee = date(Y);
@@ -227,5 +230,4 @@ function nbErreurs()
         }
         return $tabMois;
     }
-}
 ?>
