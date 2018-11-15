@@ -13,6 +13,8 @@ $_SESSION['leMois'] = $leMois;
 $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteur, $leMois);
 $lesFraisForfait = $pdo->getLesFraisForfait($idVisiteur, $leMois);
 $lesInfosFicheFrais = $pdo->getLesInfosFicheFrais($idVisiteur, $leMois);
+$Lestotal = $pdo->getTotal($idVisiteur,$leMois);
+$totalMontantRef = $pdo->getTotalMontantRefuse($idVisiteur, $leMois);
 $numAnnee = substr($leMois, 0, 4);
 $numMois = substr($leMois, 4, 2);
 $libEtat = $lesInfosFicheFrais['libEtat'];
@@ -25,6 +27,7 @@ $button = "";
 $report = "";
 $refuser = "";
 $valider = 2;
+    $lesJustificatifs= $pdo->getNbJustificatifs($idVisiteur,$leMois);
 if ((empty($lesFraisForfait)) && (empty($lesFraisHorsForfait))) {
 include("vues/v_pasDeFicheFrais.php");
 } else {
