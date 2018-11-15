@@ -144,6 +144,13 @@ class PdoGsb
      */
     public function getNbjustificatifs($idVisiteur, $mois)
     {
+        $req = "select count(*) as nbJustif from lignefraishorsforfait where idVisiteur='$idVisiteur' and mois='$mois'";
+        $res = PdoGsb::$monPdo->query($req);
+        $lesJustificatifs = array();
+        while ($laLigne = $res->fetch()) {
+            $lesJustificatifs[] = $laLigne;
+        };
+        return $lesJustificatifs;
 
     }
 
@@ -401,6 +408,12 @@ class PdoGsb
         PdoGsb::$monPdo->exec($req);
     }
 
+    public function setMontantHorsFofait($idVisiteur, $mois,$quantite,$idFrais) {
+        $req = "UPDATE lignefraisforfait SET quantite ='$quantite' where mois ='".$mois."' and idVisiteur = '".$idVisiteur."' and idFraisForfait ='".$idFrais."'";
+        PdoGsb::$monPdo->exec($req);
+
+    }
+
     public function getLesInfosFicheFraisPdf($idVisiteur, $mois)
     {
         $req = "select ficheFrais.idEtat as idEtat, ficheFrais.dateModif as dateModif, ficheFrais.nbJustificatifs as nbJustificatifs, 
@@ -457,6 +470,8 @@ class PdoGsb
         return $lesFichesFrais;
 
     }
+
+
 
 
 
