@@ -33,7 +33,11 @@ switch($uc){
 	case 'suiviPaiement' : {
 		include ('controleurs/c_suiviPaiement.php');
 		break;
+		}
 
+	case 'voirpdf' :{
+        include("controleurs/c_pdf.php");
+		break;
 	}
 }
 include("vues/v_pied.php") ;
