@@ -1,0 +1,3 @@
+gsb_homepage:
+    path:     /
+    defaults: { _controller: GSBBundle:Default:index }
