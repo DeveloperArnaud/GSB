@@ -1,25 +1,23 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
--- https://www.phpmyadmin.net/
+-- version 4.2.12deb2+deb8u2
+-- http://www.phpmyadmin.net
 --
--- Hôte : 127.0.0.1:3306
--- Généré le :  mar. 16 oct. 2018 à 12:42
--- Version du serveur :  5.7.19
--- Version de PHP :  5.6.31
+-- Client :  localhost
+-- Généré le :  Mar 05 Février 2019 à 16:30
+-- Version du serveur :  5.5.57-0+deb8u1
+-- Version de PHP :  5.6.30-0+deb8u1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
--- Base de données :  `gsb`
+-- Base de données :  `COQUERELLE`
 --
 
 -- --------------------------------------------------------
@@ -28,15 +26,13 @@ SET time_zone = "+00:00";
 -- Structure de la table `etat`
 --
 
-DROP TABLE IF EXISTS `etat`;
 CREATE TABLE IF NOT EXISTS `etat` (
   `id` char(2) NOT NULL,
-  `libelle` varchar(30) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `libelle` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `etat`
+-- Contenu de la table `etat`
 --
 
 INSERT INTO `etat` (`id`, `libelle`) VALUES
@@ -51,31 +47,26 @@ INSERT INTO `etat` (`id`, `libelle`) VALUES
 -- Structure de la table `fichefrais`
 --
 
-DROP TABLE IF EXISTS `fichefrais`;
 CREATE TABLE IF NOT EXISTS `fichefrais` (
-  `id` int(4) NOT NULL AUTO_INCREMENT,
+`id` int(4) NOT NULL,
   `idVisiteur` char(4) NOT NULL,
   `mois` char(6) NOT NULL,
   `nbJustificatifs` int(11) DEFAULT NULL,
   `montantValide` decimal(10,2) DEFAULT NULL,
   `dateModif` date DEFAULT NULL,
-  `idEtat` char(2) DEFAULT 'CR',
-  PRIMARY KEY (`mois`,`id`),
-  KEY `id` (`id`,`mois`),
-  KEY `fichefrais_ibfk_1` (`idEtat`),
-  KEY `fichefrais_ibfk_2` (`idVisiteur`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+  `idEtat` char(2) DEFAULT 'CR'
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `fichefrais`
+-- Contenu de la table `fichefrais`
 --
 
 INSERT INTO `fichefrais` (`id`, `idVisiteur`, `mois`, `nbJustificatifs`, `montantValide`, `dateModif`, `idEtat`) VALUES
-(1, 'b25', '201810', 1, '10.00', '2018-10-05', 'VA'),
-(2, 'a17', '201810', 0, '0.00', '2018-10-15', 'CR'),
-(3, 'a17', '201810', 0, '0.00', '2018-10-21', 'CR'),
-(4, 'a17', '201810', 0, '0.00', '2018-10-21', 'CL'),
-(5, 'a17', 'test', 1, '10.25', '2018-05-05', 'VA');
+(12, 'a17', '201801', NULL, NULL, '2019-01-15', 'CR'),
+(6, 'b13', '201810', 2, 45.02, '2018-11-10', 'RB'),
+(8, 'b16', '201811', 2, 300.00, '2018-11-02', 'RB'),
+(10, 'a17', '201811', 8, 1189.34, '2019-01-15', 'RB'),
+(11, 'a17', '201812', NULL, 1287.86, '2019-01-15', 'VA');
 
 -- --------------------------------------------------------
 
@@ -83,24 +74,21 @@ INSERT INTO `fichefrais` (`id`, `idVisiteur`, `mois`, `nbJustificatifs`, `montan
 -- Structure de la table `fraisforfait`
 --
 
-DROP TABLE IF EXISTS `fraisforfait`;
 CREATE TABLE IF NOT EXISTS `fraisforfait` (
   `id` char(3) NOT NULL,
   `libelle` char(20) DEFAULT NULL,
-  `montant` decimal(5,2) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `montant` decimal(5,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `fraisforfait`
+-- Contenu de la table `fraisforfait`
 --
 
 INSERT INTO `fraisforfait` (`id`, `libelle`, `montant`) VALUES
-('ETP', 'Forfait Etape', '110.00'),
-('KM', 'Frais Kilométrique', '0.62'),
-('LEL', 'Le test', '24.52'),
-('NUI', 'Nuitée Hôtel', '80.00'),
-('REP', 'Repas Restaurant', '25.00');
+('ETP', 'Forfait Etape', 110.00),
+('KM', 'Frais Kilométrique', 0.62),
+('NUI', 'Nuitée Hôtel', 80.00),
+('REP', 'Repas Restaurant', 25.00);
 
 -- --------------------------------------------------------
 
@@ -108,22 +96,37 @@ INSERT INTO `fraisforfait` (`id`, `libelle`, `montant`) VALUES
 -- Structure de la table `lignefraisforfait`
 --
 
-DROP TABLE IF EXISTS `lignefraisforfait`;
 CREATE TABLE IF NOT EXISTS `lignefraisforfait` (
   `idVisiteur` char(4) NOT NULL,
   `mois` char(6) NOT NULL,
   `idFraisForfait` char(3) NOT NULL,
-  `quantite` int(11) DEFAULT NULL,
-  PRIMARY KEY (`idVisiteur`,`mois`,`idFraisForfait`),
-  KEY `idFraisForfait` (`idFraisForfait`)
+  `quantite` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `lignefraisforfait`
+-- Contenu de la table `lignefraisforfait`
 --
 
 INSERT INTO `lignefraisforfait` (`idVisiteur`, `mois`, `idFraisForfait`, `quantite`) VALUES
-('a17', 'test', 'LEL', 2);
+('a17', '201801', 'ETP', 0),
+('a17', '201801', 'KM', 0),
+('a17', '201801', 'NUI', 0),
+('a17', '201801', 'REP', 0),
+('a17', '201811', 'ETP', 3),
+('a17', '201811', 'KM', 7),
+('a17', '201811', 'NUI', 3),
+('a17', '201812', 'ETP', 6),
+('a17', '201812', 'KM', 3),
+('a17', '201812', 'NUI', 4),
+('a17', '201812', 'REP', 7),
+('b13', '201810', 'ETP', 0),
+('b13', '201810', 'KM', 2),
+('b13', '201810', 'NUI', 0),
+('b13', '201810', 'REP', 0),
+('b16', '201811', 'ETP', 0),
+('b16', '201811', 'KM', 6),
+('b16', '201811', 'NUI', 0),
+('b16', '201811', 'REP', 0);
 
 -- --------------------------------------------------------
 
@@ -131,24 +134,32 @@ INSERT INTO `lignefraisforfait` (`idVisiteur`, `mois`, `idFraisForfait`, `quanti
 -- Structure de la table `lignefraishorsforfait`
 --
 
-DROP TABLE IF EXISTS `lignefraishorsforfait`;
 CREATE TABLE IF NOT EXISTS `lignefraishorsforfait` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `idVisiteur` char(4) NOT NULL,
   `mois` char(6) NOT NULL,
   `libelle` varchar(100) DEFAULT NULL,
   `date` date DEFAULT NULL,
-  `montant` decimal(10,2) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `idVisiteur` (`idVisiteur`,`mois`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `montant` decimal(10,2) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `lignefraishorsforfait`
+-- Contenu de la table `lignefraishorsforfait`
 --
 
 INSERT INTO `lignefraishorsforfait` (`id`, `idVisiteur`, `mois`, `libelle`, `date`, `montant`) VALUES
-(1, 'a17', 'test', 'le test', '2018-05-05', '45.02');
+(8, 'b13', '201810', 'REFUSE : Voyage SNCF', '2018-10-18', 30.00),
+(11, 'b16', '201811', 'REFUSE : Voyage SNCF', '2018-11-02', 45.02),
+(12, 'b16', '201811', 'Repas avec practicien', '2018-11-02', 250.00),
+(13, 'a17', '201812', 'Refuse traiteur, alimentation, boisson', '2018-10-30', 50.00),
+(14, 'a17', '201811', 'REFUSE : repas avec praticien', '2018-10-24', 25.00),
+(15, 'a17', '201811', 'REFUSE : location véhicule', '2018-10-22', 25.00),
+(16, 'a17', '201811', 'REFUSE : location véhicule', '2018-10-29', 25.00),
+(17, 'a17', '201811', 'REFUSE : Repas', '2018-10-29', 52.00),
+(18, 'a17', '201812', 'REFUSE : Voyage SNCF', '2018-10-29', 56.00),
+(19, 'a17', '201801', 'rémunération intervenant/spécialiste', '2018-10-29', 87.00),
+(20, 'a17', '201812', 'REFUSE : location véhicule', '2018-10-29', 25.00),
+(21, 'b13', '201810', 'Repas avec le practicien', '2018-11-02', 45.02);
 
 -- --------------------------------------------------------
 
@@ -156,7 +167,6 @@ INSERT INTO `lignefraishorsforfait` (`id`, `idVisiteur`, `mois`, `libelle`, `dat
 -- Structure de la table `visiteur`
 --
 
-DROP TABLE IF EXISTS `visiteur`;
 CREATE TABLE IF NOT EXISTS `visiteur` (
   `id` char(4) NOT NULL,
   `nom` char(30) DEFAULT NULL,
@@ -167,12 +177,11 @@ CREATE TABLE IF NOT EXISTS `visiteur` (
   `cp` char(5) DEFAULT NULL,
   `ville` char(30) DEFAULT NULL,
   `dateEmbauche` date DEFAULT NULL,
-  `comptable` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `comptable` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `visiteur`
+-- Contenu de la table `visiteur`
 --
 
 INSERT INTO `visiteur` (`id`, `nom`, `prenom`, `login`, `mdp`, `adresse`, `cp`, `ville`, `dateEmbauche`, `comptable`) VALUES
@@ -205,29 +214,82 @@ INSERT INTO `visiteur` (`id`, `nom`, `prenom`, `login`, `mdp`, `adresse`, `cp`, 
 ('f4', 'Gest', 'Alain', 'agest', '1af7dedacbbe8ce324e316429a816daeff4c542f', '30 avenue de la mer', '13025', 'Berre', '1985-11-01', 0);
 
 --
--- Contraintes pour les tables déchargées
+-- Index pour les tables exportées
+--
+
+--
+-- Index pour la table `etat`
+--
+ALTER TABLE `etat`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `fichefrais`
+--
+ALTER TABLE `fichefrais`
+ ADD PRIMARY KEY (`mois`,`id`), ADD KEY `id` (`id`,`mois`), ADD KEY `fichefrais_ibfk_1` (`idEtat`), ADD KEY `fichefrais_ibfk_2` (`idVisiteur`);
+
+--
+-- Index pour la table `fraisforfait`
+--
+ALTER TABLE `fraisforfait`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `lignefraisforfait`
+--
+ALTER TABLE `lignefraisforfait`
+ ADD PRIMARY KEY (`idVisiteur`,`mois`,`idFraisForfait`), ADD KEY `idFraisForfait` (`idFraisForfait`);
+
+--
+-- Index pour la table `lignefraishorsforfait`
+--
+ALTER TABLE `lignefraishorsforfait`
+ ADD PRIMARY KEY (`id`), ADD KEY `idVisiteur` (`idVisiteur`,`mois`);
+
+--
+-- Index pour la table `visiteur`
+--
+ALTER TABLE `visiteur`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT pour les tables exportées
+--
+
+--
+-- AUTO_INCREMENT pour la table `fichefrais`
+--
+ALTER TABLE `fichefrais`
+MODIFY `id` int(4) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+--
+-- AUTO_INCREMENT pour la table `lignefraishorsforfait`
+--
+ALTER TABLE `lignefraishorsforfait`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
+--
+-- Contraintes pour les tables exportées
 --
 
 --
 -- Contraintes pour la table `fichefrais`
 --
 ALTER TABLE `fichefrais`
-  ADD CONSTRAINT `fichefrais_ibfk_1` FOREIGN KEY (`idEtat`) REFERENCES `etat` (`id`),
-  ADD CONSTRAINT `fichefrais_ibfk_2` FOREIGN KEY (`idVisiteur`) REFERENCES `visiteur` (`id`);
+ADD CONSTRAINT `fichefrais_ibfk_1` FOREIGN KEY (`idEtat`) REFERENCES `etat` (`id`),
+ADD CONSTRAINT `fichefrais_ibfk_2` FOREIGN KEY (`idVisiteur`) REFERENCES `visiteur` (`id`);
 
 --
 -- Contraintes pour la table `lignefraisforfait`
 --
 ALTER TABLE `lignefraisforfait`
-  ADD CONSTRAINT `lignefraisforfait_ibfk_1` FOREIGN KEY (`idVisiteur`,`mois`) REFERENCES `fichefrais` (`idVisiteur`, `mois`),
-  ADD CONSTRAINT `lignefraisforfait_ibfk_2` FOREIGN KEY (`idFraisForfait`) REFERENCES `fraisforfait` (`id`);
+ADD CONSTRAINT `lignefraisforfait_ibfk_1` FOREIGN KEY (`idVisiteur`, `mois`) REFERENCES `fichefrais` (`idVisiteur`, `mois`),
+ADD CONSTRAINT `lignefraisforfait_ibfk_2` FOREIGN KEY (`idFraisForfait`) REFERENCES `fraisforfait` (`id`);
 
 --
 -- Contraintes pour la table `lignefraishorsforfait`
 --
 ALTER TABLE `lignefraishorsforfait`
-  ADD CONSTRAINT `lignefraishorsforfait_ibfk_1` FOREIGN KEY (`idVisiteur`,`mois`) REFERENCES `fichefrais` (`idVisiteur`, `mois`);
-COMMIT;
+ADD CONSTRAINT `lignefraishorsforfait_ibfk_1` FOREIGN KEY (`idVisiteur`, `mois`) REFERENCES `fichefrais` (`idVisiteur`, `mois`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
