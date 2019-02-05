@@ -9,7 +9,7 @@ Remove folder : git rm - r "foldername"
 To confirm :
 git add . (dot neccesary)
 git commit -m "comment"
-git push (or git push origin master if you are not in the branch master)
+git push or git push origin branch ( if you are not in the wanted branch)
 
 To switch branch:
 git checkout "branch's name"
