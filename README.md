@@ -27,3 +27,6 @@ git add -a
 git commit -m "comment"
 and then git push
 
+Up-to-date your project: 
+git pull
+
