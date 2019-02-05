@@ -10,7 +10,7 @@ class PDF extends FPDF
     {
         // Logo
         $this->Image("images/logogsb.jpg");
-        $this->Ln(20);
+        $this->Ln(5);
 
         // Police Arial gras 15
         $this->SetFont('Arial','',12);
@@ -19,7 +19,7 @@ class PDF extends FPDF
         // Titre
         $this->Ln(20);
         $this->Cell(200,10,'Laboratoire Gwiss Bourdin Galaxy',0,0,'C');
-        $this->Ln(20);
+        $this->Ln(10);
 
         //En tete
 

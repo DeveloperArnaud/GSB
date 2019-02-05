@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * Classe d'accès aux données.
 
@@ -18,9 +18,9 @@
 class PdoGsb
 {
     private static $serveur = 'mysql:host=localhost';
-    private static $bdd = 'dbname=gsb';
-    private static $user = 'root';
-    private static $mdp = '';
+    private static $bdd = 'dbname=COQUERELLE';
+    private static $user = 'COQUERELLE';
+    private static $mdp = 'acoquerelle';
     private static $monPdo;
     private static $monPdoGsb = null;
 
@@ -352,8 +352,8 @@ class PdoGsb
      */
     public function getLesInfosFicheFrais($idVisiteur, $mois)
     {
-        $req = "select ficheFrais.idEtat as idEtat, ficheFrais.dateModif as dateModif, ficheFrais.nbJustificatifs as nbJustificatifs, 
-			ficheFrais.montantValide as montantValide, etat.libelle as libEtat from  fichefrais inner join Etat on ficheFrais.idEtat = Etat.id 
+        $req = "select fichefrais.idEtat as idEtat, fichefrais.dateModif as dateModif, fichefrais.nbJustificatifs as nbJustificatifs, 
+			fichefrais.montantValide as montantValide, etat.libelle as libEtat from  fichefrais inner join etat on fichefrais.idetat = etat.id 
 			where fichefrais.idvisiteur ='$idVisiteur' and fichefrais.mois = '$mois'";
         $res = PdoGsb::$monPdo->query($req);
         $laLigne = $res->fetch();
@@ -369,7 +369,7 @@ class PdoGsb
 
     public function majEtatFicheFrais($idVisiteur, $mois, $etat)
     {
-        $req = "update ficheFrais set idEtat = '$etat', dateModif = now() 
+        $req = "update fichefrais set idEtat = '$etat', dateModif = now() 
 		where fichefrais.idvisiteur ='$idVisiteur' and fichefrais.mois = '$mois'";
         PdoGsb::$monPdo->exec($req);
     }
@@ -416,14 +416,14 @@ class PdoGsb
 
     public function getLesInfosFicheFraisPdf($idVisiteur, $mois)
     {
-        $req = "select ficheFrais.idEtat as idEtat, ficheFrais.dateModif as dateModif, ficheFrais.nbJustificatifs as nbJustificatifs, 
-			ficheFrais.montantValide as montantValide, etat.libelle as libEtat from  fichefrais inner join Etat on ficheFrais.idEtat = Etat.id 
+        $req = "select fichefrais.idEtat as idEtat, fichefrais.dateModif as dateModif, fichefrais.nbJustificatifs as nbJustificatifs, 
+			fichefrais.montantValide as montantValide, etat.libelle as libEtat from  fichefrais inner join etat on fichefrais.idEtat = etat.id 
 			where fichefrais.idvisiteur ='$idVisiteur' and fichefrais.mois = '$mois'";
         $res = PdoGsb::$monPdo->query($req);
         $lesFichesFrais = array();
         while ($laLigne = $res->fetch()) {
             $lesFichesFrais [] = $laLigne;
-            };
+        };
         return $lesFichesFrais;
     }
 

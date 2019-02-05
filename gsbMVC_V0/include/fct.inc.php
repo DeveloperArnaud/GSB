@@ -212,7 +212,7 @@ function nbErreurs()
 
     function getSixDernierMois()
     {
-        $mois = date(m) + 1;
+        $mois = date(m) + 2;
         $annee = date(Y);
         $tabMois = array();
         for ($i = 6; $i > 0; $i--) {
