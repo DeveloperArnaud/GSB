@@ -25,9 +25,5 @@ For each changes that you did:
 On the terminal : 
 git add -a
 git commit -m "comment"
-git merge
 and then git push
 
-
-
-YOU NEED TO MERGE BEFORE PUSHING PLEASE, thanks.
