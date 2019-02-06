@@ -1,4 +1,4 @@
-# GSBapp
+# GSB
 
 GIT COMMANDS :
 
